@@ -460,8 +460,13 @@ nav {
         min-width: unset;
     }
 
+    .main-game {
+        padding: 100px;
+    }
+
     nav {
         height: 110px;
+        margin-bottom: 10px;
     }
 
     .nav-logo1 {

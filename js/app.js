@@ -285,7 +285,7 @@ const initCellsEvent = () => {
                 e.classList.remove('err');
                 e.classList.add('selected');
                 resetBg();
-                hoverBg(index);
+                // hoverBg(index);
             }
         })
     })

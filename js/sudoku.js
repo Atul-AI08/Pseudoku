@@ -142,7 +142,7 @@ const sudokuCheck = (grid) => {
 const rand = () => Math.floor(Math.random() * CONSTANT.GRID_SIZE);
 
 // generate sudoku
-const sudokuGen = (level) => {
+const sudokuGen = () => {
     let sudoku = newGrid(CONSTANT.GRID_SIZE);
     let check = sudokuCreate(sudoku);
     if (check) {

@@ -1,19 +1,8 @@
-document.querySelector('#dark-mode-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const isDarkMode = document.body.classList.contains('dark');
-    localStorage.setItem('darkmode', isDarkMode);
-    // chang mobile status bar color
-    document.querySelector('meta[name="theme-color"').setAttribute('content', isDarkMode ? '#1a1a2e' : '#fff');
-});
-
-// initial value
-
 // screens
 const start_screen = document.querySelector('#start-screen');
 const game_screen = document.querySelector('#game-screen');
-const pause_screen = document.querySelector('#pause-screen');
 const result_screen = document.querySelector('#result-screen');
-// ----------
+
 const cells = document.querySelectorAll('.main-grid-cell');
 
 const name_input = document.querySelector('#input-name');
@@ -21,24 +10,11 @@ const name_input = document.querySelector('#input-name');
 const number_inputs = document.querySelectorAll('.number');
 
 const player_name = document.querySelector('#player-name');
-const game_level = document.querySelector('#game-level');
-const game_time = document.querySelector('#game-time');
-
-const result_time = document.querySelector('#result-time');
-
-let level_index = 0;
-let level = CONSTANT.LEVEL[level_index];
-
-let timer = null;
-let pause = false;
-let seconds = 0;
 
 let su = undefined;
 let su_answer = undefined;
 
 let selected_cell = -1;
-
-// --------
 
 const getGameInfo = () => JSON.parse(localStorage.getItem('game'));
 
@@ -55,12 +31,9 @@ const initGameGrid = () => {
         index++;
     }
 }
-// ----------------
 
 const setPlayerName = (name) => localStorage.setItem('player_name', name);
 const getPlayerName = () => localStorage.getItem('player_name');
-
-const showTime = (seconds) => new Date(seconds * 1000).toISOString().substr(11, 8);
 
 const clearSudoku = () => {
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
@@ -75,14 +48,13 @@ const initSudoku = () => {
     clearSudoku();
     resetBg();
     // generate sudoku puzzle here
-    su = sudokuGen(level);
+    su = sudokuGen();
     su_answer = [...su.question];
 
     seconds = 0;
 
     saveGameInfo();
 
-    // show sudoku to div
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
         let row = Math.floor(i / CONSTANT.GRID_SIZE);
         let col = i % CONSTANT.GRID_SIZE;
@@ -99,18 +71,10 @@ const initSudoku = () => {
 const loadSudoku = () => {
     let game = getGameInfo();
 
-    game_level.innerHTML = CONSTANT.LEVEL_NAME[game.level];
-
     su = game.su;
 
     su_answer = su.answer;
 
-    seconds = game.seconds;
-    // game_time.innerHTML = showTime(seconds);
-
-    level_index = game.level;
-
-    // show sudoku to div
     for (let i = 0; i < Math.pow(CONSTANT.GRID_SIZE, 2); i++) {
         let row = Math.floor(i / CONSTANT.GRID_SIZE);
         let col = i % CONSTANT.GRID_SIZE;
@@ -132,11 +96,15 @@ const hoverBg = (index) => {
 
     for (let i = 0; i < CONSTANT.BOX_SIZE; i++) {
         for (let j = 0; j < CONSTANT.BOX_SIZE; j++) {
+            if (9 * (box_start_row + i) + (box_start_col + j)==index){
+                let cell = cells[9 * (box_start_row + i) + (box_start_col + j)];
+                cell.classList.add('nhover');
+                continue;
+            }
             let cell = cells[9 * (box_start_row + i) + (box_start_col + j)];
             cell.classList.add('hover');
         }
     }
-
     let step = 9;
     while (index - step >= 0) {
         cells[index - step].classList.add('hover');
@@ -164,6 +132,7 @@ const hoverBg = (index) => {
 
 const resetBg = () => {
     cells.forEach(e => e.classList.remove('hover'));
+    cells.forEach(e => e.classList.remove('nhover'));
 }
 
 const checkErr = (value) => {
@@ -221,8 +190,6 @@ const removeErr = () => cells.forEach(e => e.classList.remove('err'));
 
 const saveGameInfo = () => {
     let game = {
-        level: level_index,
-        seconds: seconds,
         su: {
             original: su.original,
             question: su.question,
@@ -239,9 +206,7 @@ const removeGameInfo = () => {
 const isGameWin = () => sudokuCheck(su_answer);
 
 const showResult = () => {
-    clearInterval(timer);
     result_screen.classList.add('active');
-    result_time.innerHTML = showTime(seconds);
 }
 
 const initNumberInputEvent = () => {
@@ -250,13 +215,11 @@ const initNumberInputEvent = () => {
             if (!cells[selected_cell].classList.contains('filled')) {
                 cells[selected_cell].innerHTML = index + 1;
                 cells[selected_cell].setAttribute('data-value', index + 1);
-                // add to answer
                 let row = Math.floor(selected_cell / CONSTANT.GRID_SIZE);
                 let col = selected_cell % CONSTANT.GRID_SIZE;
                 su_answer[row][col] = index + 1;
                 // save game
                 saveGameInfo()
-                // -----
                 removeErr();
                 checkErr(index + 1);
                 cells[selected_cell].classList.add('zoom-in');
@@ -267,9 +230,7 @@ const initNumberInputEvent = () => {
                 // check game win
                 if (isGameWin()) {
                     removeGameInfo();
-                    // showResult();
                 }
-                // ----
             }
         })
     })
@@ -285,7 +246,7 @@ const initCellsEvent = () => {
                 e.classList.remove('err');
                 e.classList.add('selected');
                 resetBg();
-                // hoverBg(index);
+                hoverBg(index);
             }
         })
     })
@@ -297,35 +258,13 @@ const startGame = () => {
 
     player_name.innerHTML = name_input.value.trim();
     setPlayerName(name_input.value.trim());
-
-    // game_level.innerHTML = CONSTANT.LEVEL_NAME[level_index];
-
-    showTime(seconds);
-
-    timer = setInterval(() => {
-        if (!pause) {
-            seconds = seconds + 1;
-            // game_time.innerHTML = showTime(seconds);
-        }
-    }, 1000);
 }
 
 const returnStartScreen = () => {
-    clearInterval(timer);
-    pause = false;
-    seconds = 0;
     start_screen.classList.add('active');
     game_screen.classList.remove('active');
-    pause_screen.classList.remove('active');
     result_screen.classList.remove('active');
 }
-
-// add button event
-document.querySelector('#btn-level').addEventListener('click', (e) => {
-    level_index = level_index + 1 > CONSTANT.LEVEL.length - 1 ? 0 : level_index + 1;
-    level = CONSTANT.LEVEL[level_index];
-    e.target.innerHTML = CONSTANT.LEVEL_NAME[level_index];
-});
 
 document.querySelector('#btn-play').addEventListener('click', () => {
     if (name_input.value.trim().length > 0) {
@@ -340,15 +279,6 @@ document.querySelector('#btn-play').addEventListener('click', () => {
     }
 });
 
-document.querySelector('#btn-new-game').addEventListener('click', () => {
-    returnStartScreen();
-});
-
-document.querySelector('#btn-new-game-2').addEventListener('click', () => {
-    console.log('object')
-    returnStartScreen();
-});
-
 document.querySelector('#btn-delete').addEventListener('click', () => {
     cells[selected_cell].innerHTML = '';
     cells[selected_cell].setAttribute('data-value', 0);
@@ -360,13 +290,8 @@ document.querySelector('#btn-delete').addEventListener('click', () => {
 
     removeErr();
 })
-// -------------
 
 const init = () => {
-    const darkmode = JSON.parse(localStorage.getItem('darkmode'));
-    document.body.classList.add(darkmode ? 'dark' : 'light');
-    document.querySelector('meta[name="theme-color"').setAttribute('content', darkmode ? '#1a1a2e' : '#fff');
-
     const game = getGameInfo();
 
     initGameGrid();

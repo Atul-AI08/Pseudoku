@@ -224,6 +224,8 @@ nav {
 .main-sudoku-grid {
     display: grid;
     /* gap: var(--gap); */
+    position: relative;
+    top: -120px;
     grid-template-columns: repeat(9, auto);
 }
 
@@ -233,7 +235,7 @@ nav {
     /* border-radius: var(--border-radius); */
     border: 1px solid #a5a5a5;
     background-color: var(--white);
-    color: var(--blue);
+    /* color: var(--blue); */
     display: grid;
     place-items: center;
     font-size: var(--font-size);
@@ -246,13 +248,12 @@ nav {
 }
 
 .main-grid-cell.selected {
-    background-color: var(--blue);
+    border: 1.6px solid #000000;
     color: #000000;
 }
 
 .main-grid-cell:hover {
-    border: 2px solid var(--blue);
-    background-color: var(--blue);
+    border: 1.6px solid var(--black);
 }
 
 .main-grid-cell.nhover {
@@ -289,6 +290,8 @@ nav {
     place-items: center;
     padding: 0 20px;
     font-size: var(--font-size);
+    position: relative;
+    top: -120px;
 }
 
 .main-game-info-time {
@@ -316,6 +319,8 @@ nav {
 .number-container {
     display: flex;
     align-items: flex-end;
+    position: relative;
+    top: -120px;
 }
 
 .numbers {
@@ -450,7 +455,7 @@ nav {
     :root {
         --nav-size: 50px;
 
-        --sudoku-cell-size: 30px;
+        --sudoku-cell-size: 37px;
 
         --border-radius: 5px;
 
@@ -499,17 +504,32 @@ nav {
     .main {
         height: 100vh;
     }
+    .main-sudoku-grid {
+        position: relative;
+        top: -90px;
+    }
+    .main-game-info-box {
+        position: relative;
+        top: -80px;
+    }
+    .number-container {
+        position: relative;
+        top: -70px;
+    }
+    .main-grid-cell {
+        font-size: 1.4rem;
+    }
 }
 
 .smallText{
     position: relative;
-    left: 5px;
+    left: 4px;
 }
 
-@media screen and (max-width: 801px) {
+@media screen and (max-width: 800px) {
     .smallText{
         font-size: x-small;
-        left: 4px;
+        left: 3.5px;
     }
 }
     
@@ -523,7 +543,7 @@ nav {
 .text7,
 .text8,
 .text9 {
-    top: 100px;
+    top: 166px;
 }
 
 .text10,
@@ -535,7 +555,7 @@ nav {
 .text16,
 .text17,
 .text18 {
-    top: 119px;
+    top: 196px;
 }
 
 .text19,
@@ -547,7 +567,7 @@ nav {
 .text25,
 .text26,
 .text27 {
-    top: 138px;
+    top: 228px;
 }
 
 .text28,
@@ -559,7 +579,7 @@ nav {
 .text34,
 .text35,
 .text36 {
-    top: 160px;
+    top: 263px;
 }
 
 .text37,
@@ -571,7 +591,7 @@ nav {
 .text43,
 .text44,
 .text45 {
-    top: 179px;
+    top: 293px;
 }
 
 .text46,
@@ -583,7 +603,7 @@ nav {
 .text52,
 .text53,
 .text54 {
-    top: 198px;
+    top: 326px;
 }
 
 .text55,
@@ -595,7 +615,7 @@ nav {
 .text61,
 .text62,
 .text63 {
-    top: 220px;
+    top: 360px;
 }
 
 .text64,
@@ -607,7 +627,7 @@ nav {
 .text70,
 .text71,
 .text72 {
-    top: 239px;
+    top: 392px;
 }
 
 .text73,
@@ -619,45 +639,44 @@ nav {
 .text79,
 .text80,
 .text81 {
-    top: 258px;
+    top: 424px;
 }
 
-@media screen and (min-width: 801px) {
+@media screen and (max-width: 800px) {
 
 .text1, .text2, .text3, .text4, .text5, .text6, .text7, .text8, .text9{
-    top:164px;
+    top:110px;
 }
 
 .text10, .text11, .text12, .text13, .text14, .text15, .text16, .text17, .text18{
-    top: 194px;
+    top: 134px;
 }
 
 .text19, .text20, .text21, .text22, .text23, .text24, .text25, .text26, .text27{
-    top: 228px;
+    top: 159px;
 }
 
 .text28, .text29, .text30, .text31, .text32, .text33, .text34, .text35, .text36{
-    top: 262px;
+    top: 188px;
 }
 
 .text37, .text38, .text39, .text40, .text41, .text42, .text43, .text44, .text45{
-    top: 294px;
+    top: 212px;
 }
 
 .text46, .text47, .text48, .text49, .text50, .text51, .text52, .text53, .text54{
-    top: 326px;
+    top: 238px;
 }
 
 .text55, .text56, .text57, .text58, .text59, .text60, .text61, .text62, .text63{
-    top: 362px;
+    top: 265px;
 }
 
 .text64, .text65, .text66, .text67, .text68, .text69, .text70, .text71, .text72{
-    top: 393px;
+    top: 289px;
 }
 
 .text73, .text74, .text75, .text76, .text77, .text78, .text79, .text80, .text81{
-    top: 426px;
+    top: 315px;
 }
 }
-

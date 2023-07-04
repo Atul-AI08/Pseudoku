@@ -500,3 +500,164 @@ nav {
         height: 100vh;
     }
 }
+
+.smallText{
+    position: relative;
+    left: 5px;
+}
+
+@media screen and (max-width: 801px) {
+    .smallText{
+        font-size: x-small;
+        left: 4px;
+    }
+}
+    
+
+.text1,
+.text2,
+.text3,
+.text4,
+.text5,
+.text6,
+.text7,
+.text8,
+.text9 {
+    top: 100px;
+}
+
+.text10,
+.text11,
+.text12,
+.text13,
+.text14,
+.text15,
+.text16,
+.text17,
+.text18 {
+    top: 119px;
+}
+
+.text19,
+.text20,
+.text21,
+.text22,
+.text23,
+.text24,
+.text25,
+.text26,
+.text27 {
+    top: 138px;
+}
+
+.text28,
+.text29,
+.text30,
+.text31,
+.text32,
+.text33,
+.text34,
+.text35,
+.text36 {
+    top: 160px;
+}
+
+.text37,
+.text38,
+.text39,
+.text40,
+.text41,
+.text42,
+.text43,
+.text44,
+.text45 {
+    top: 179px;
+}
+
+.text46,
+.text47,
+.text48,
+.text49,
+.text50,
+.text51,
+.text52,
+.text53,
+.text54 {
+    top: 198px;
+}
+
+.text55,
+.text56,
+.text57,
+.text58,
+.text59,
+.text60,
+.text61,
+.text62,
+.text63 {
+    top: 220px;
+}
+
+.text64,
+.text65,
+.text66,
+.text67,
+.text68,
+.text69,
+.text70,
+.text71,
+.text72 {
+    top: 239px;
+}
+
+.text73,
+.text74,
+.text75,
+.text76,
+.text77,
+.text78,
+.text79,
+.text80,
+.text81 {
+    top: 258px;
+}
+
+@media screen and (min-width: 801px) {
+
+.text1, .text2, .text3, .text4, .text5, .text6, .text7, .text8, .text9{
+    top:164px;
+}
+
+.text10, .text11, .text12, .text13, .text14, .text15, .text16, .text17, .text18{
+    top: 194px;
+}
+
+.text19, .text20, .text21, .text22, .text23, .text24, .text25, .text26, .text27{
+    top: 228px;
+}
+
+.text28, .text29, .text30, .text31, .text32, .text33, .text34, .text35, .text36{
+    top: 262px;
+}
+
+.text37, .text38, .text39, .text40, .text41, .text42, .text43, .text44, .text45{
+    top: 294px;
+}
+
+.text46, .text47, .text48, .text49, .text50, .text51, .text52, .text53, .text54{
+    top: 326px;
+}
+
+.text55, .text56, .text57, .text58, .text59, .text60, .text61, .text62, .text63{
+    top: 362px;
+}
+
+.text64, .text65, .text66, .text67, .text68, .text69, .text70, .text71, .text72{
+    top: 393px;
+}
+
+.text73, .text74, .text75, .text76, .text77, .text78, .text79, .text80, .text81{
+    top: 426px;
+}
+}
+

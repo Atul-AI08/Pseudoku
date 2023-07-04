@@ -4,6 +4,7 @@ const game_screen = document.querySelector('#game-screen');
 const result_screen = document.querySelector('#result-screen');
 
 const cells = document.querySelectorAll('.main-grid-cell');
+const smallText = document.querySelectorAll('.smallText');
 
 const name_input = document.querySelector('#input-name');
 
@@ -64,6 +65,12 @@ const initSudoku = () => {
         if (su.question[row][col] !== 0) {
             cells[i].classList.add('filled');
             cells[i].innerHTML = su.question[row][col];
+        }
+        if(su.topText[row][col]!==0) {
+            smallText[i].innerHTML = su.topText[row][col];
+        }
+        else{
+            smallText[i].innerHTML = '‎';
         }
     }
 }

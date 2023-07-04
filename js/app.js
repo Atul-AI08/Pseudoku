@@ -313,3 +313,24 @@ const init = () => {
 }
 
 init();
+
+khaki = [0,4,5,7,8,13,14,16,22,25,18,27,36,32,33,41,39,48,49,52,53,55,56,66,67,70,72,73,74,79,80];
+lightgreen = [1,2,3,6,15,17,19,20,23,24,26,31,40,42,43,45,51,54,57,58,62,71,75,76,77,78];
+skyblue = [9,10,21,29,30,34,35,44,46,47,50,59,63,64,65,68];
+lightsalmon = [11,12,28,37,38,60,61,69];
+
+for (let i = 0; i < khaki.length; i++) {
+    cells[khaki[i]].style.backgroundColor = 'khaki';
+}
+
+for (let i = 0; i < lightgreen.length; i++) {
+    cells[lightgreen[i]].style.backgroundColor = 'lightgreen';
+}
+
+for (let i = 0; i < skyblue.length; i++) {
+    cells[skyblue[i]].style.backgroundColor = 'skyblue';
+}
+
+for (let i = 0; i < lightsalmon.length; i++) {
+    cells[lightsalmon[i]].style.backgroundColor = 'lightsalmon';
+}

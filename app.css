@@ -88,7 +88,25 @@ nav {
     font-size: var(--font-size-lg);
     color: var(--blue);
 }
-
+a:hover{
+    color:blue;
+}
+.logo 
+{
+    height:100px;
+}
+@media (max-width:800px)
+{
+    .logo{
+        margin-top:40px;
+    }
+}
+@media (min-width:800px)
+{
+    .logo{
+        margin-top:10px;
+    }
+}
 .dark-mode-toggle {
     color: var(--blue);
     font-size: var(--font-size-lg);

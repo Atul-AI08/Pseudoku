@@ -16,6 +16,18 @@ let su_answer = undefined;
 
 let selected_cell = -1;
 
+let myMap = new Map([
+    [1, 'a'],
+    [2, 'd'],
+    [3, 'e'],
+    [4, 'l'],
+    [5, 'i'],
+    [6, 'm'],
+    [7, 'p'],
+    [8, 't'],
+    [9, 'u']
+]);
+
 const getGameInfo = () => JSON.parse(localStorage.getItem('game'));
 
 // add space for each 9 cells
@@ -61,7 +73,7 @@ const initSudoku = () => {
         
         cells[i].setAttribute('data-value', su.question[row][col]);
 
-        if (su.question[row][col] !== 0) {
+        if (su.question[row][col] !== '') {
             cells[i].classList.add('filled');
             cells[i].innerHTML = su.question[row][col];
         }
@@ -137,7 +149,7 @@ const resetBg = () => {
 
 const checkErr = (value) => {
     const addErr = (cell) => {
-        if (parseInt(cell.getAttribute('data-value')) === value) {
+        if (cell.getAttribute('data-value') === value) {
             cell.classList.add('err');
             cell.classList.add('cell-err');
             setTimeout(() => {
@@ -203,7 +215,7 @@ const removeGameInfo = () => {
     localStorage.removeItem('game');
 }
 
-const isGameWin = () => sudokuCheck(su_answer);
+// const isGameWin = () => sudokuCheck(su_answer);
 
 const showResult = () => {
     result_screen.classList.add('active');
@@ -213,24 +225,24 @@ const initNumberInputEvent = () => {
     number_inputs.forEach((e, index) => {
         e.addEventListener('click', () => {
             if (!cells[selected_cell].classList.contains('filled')) {
-                cells[selected_cell].innerHTML = index + 1;
-                cells[selected_cell].setAttribute('data-value', index + 1);
+                cells[selected_cell].innerHTML = myMap.get(index+1);
+                cells[selected_cell].setAttribute('data-value', myMap.get(index+1));
                 let row = Math.floor(selected_cell / CONSTANT.GRID_SIZE);
                 let col = selected_cell % CONSTANT.GRID_SIZE;
-                su_answer[row][col] = index + 1;
+                su_answer[row][col] = myMap.get(index+1);
                 // save game
                 saveGameInfo()
                 removeErr();
-                checkErr(index + 1);
+                checkErr(myMap.get(index+1));
                 cells[selected_cell].classList.add('zoom-in');
                 setTimeout(() => {
                     cells[selected_cell].classList.remove('zoom-in');
                 }, 500);
 
                 // check game win
-                if (isGameWin()) {
-                    removeGameInfo();
-                }
+                // if (isGameWin()) {
+                //     removeGameInfo();
+                // }
             }
         })
     })

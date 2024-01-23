@@ -17,15 +17,15 @@ let su_answer = undefined;
 let selected_cell = -1;
 
 let myMap = new Map([
-    [1, 'a'],
-    [2, 'd'],
-    [3, 'e'],
-    [4, 'l'],
-    [5, 'i'],
-    [6, 'm'],
-    [7, 'p'],
-    [8, 't'],
-    [9, 'u']
+    [1, 'r'],
+    [2, 'n'],
+    [3, 'l'],
+    [4, 'k'],
+    [5, 't'],
+    [6, 'y'],
+    [7, 'i'],
+    [8, 'b'],
+    [9, 'a']
 ]);
 
 const getGameInfo = () => JSON.parse(localStorage.getItem('game'));
